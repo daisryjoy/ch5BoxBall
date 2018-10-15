@@ -21,12 +21,12 @@ public class BallDemo
     }
 
     public void boxBounce(){
-        BoxBall ball = new BoxBall(50, 50, 16, Color.BLUE, myCanvas);
-        ball.draw();
+     //   BoxBall ball = new BoxBall(50, 50, 16, Color.BLUE, myCanvas );
+       // ball.draw();
         
            while(true) {
             myCanvas.wait(50);           // small delay
-            ball.move();
+         //   ball.move();
         }
     }
     

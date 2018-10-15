@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.ArrayList;
+import java.util.Random;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Class BoxBall - a graphical ball that moves at a constant rate in
@@ -10,9 +13,11 @@ import java.awt.geom.*;
  *
  * This movement can be initiated by repeated calls to the "move" method.
  * 
- * @author Bill Crosbie
+ * EXTRA CREDTIT: diameter of ball is randomized. 
  * 
- * @version 2011.07.31
+ * @author Daisry Joy Ladignon
+ * 
+ * @version 2018.10.15
  */
 
 public class BoxBall
@@ -25,13 +30,18 @@ public class BoxBall
     private int diameter;
     private int xPosition;
     private int yPosition;
-    private final int bottomWall;          // y position of bottom Wall
-    private final int topWall;             // y position of top Wall
-    private final int leftWall;            // x position of left Wall
-    private final int rightWall;           // x position of right Wall
+    private int bottomWall;          // y position of bottom Wall
+    private int topWall;             // y position of top Wall
+    private int leftWall;            // x position of left Wall
+    private int rightWall;           // x position of right Wall
     private Canvas canvas;
-    private int ySpeed = 4 ;                // initial downward speed
-    private int xSpeed = 7;
+    private int r; 
+    private int g; 
+    private int b;
+    private int xSpeed; 
+    private int ySpeed;
+    private Random rand = new Random();
+    private ArrayList<BoxBall> balls; 
 
     /**
      * Constructor for objects of class BoxBall
@@ -42,20 +52,82 @@ public class BoxBall
      * @param ballColor  the color of the ball
      * @param drawingCanvas  the canvas to draw this ball on
      */
-    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor,
-                        Canvas drawingCanvas)
+    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor, int bottomWall,
+                   int topWall, int rightWall, int leftWall, Canvas drawingCanvas,
+                   int ySpeed, int xSpeed)                   
     {
         xPosition = xPos;
         yPosition = yPos;
         color = ballColor;
         diameter = ballDiameter;
-        //groundPosition = groundPos;
         canvas = drawingCanvas;
+        this.topWall = topWall; 
+        this.bottomWall = bottomWall; 
+        this.rightWall = rightWall; 
+        this.leftWall = leftWall; 
+        this.ySpeed = ySpeed; 
+        this.xSpeed = xSpeed; 
+       
+    }
+
+    
+    /**
+     * This method draws the canvas and the balls that move inisde.
+     */
+    public void boxBounce(){
+        canvas = new Canvas("Box", 700, 700);
+        balls = new ArrayList<BoxBall>(); 
+        rand = new Random(); 
+        
+        //drawing the box
         leftWall = 0;
         rightWall = 600;
         topWall = 0;
-        bottomWall = 500;
+        bottomWall = 600;
+        
+        canvas.setVisible(true); // makes the canvas visible
+        
+        for(int i = 0; i <=  30 && i >= 5;  i++) // randomizes the number of balls 
+        { do{
+            xSpeed = rand.nextInt(); // randomizes the x position speed for each ball
+        } while (xSpeed == 0); 
+        do{ ySpeed = rand.nextInt(); // randomizes y position speed for each ball
+        }while (ySpeed == 0);
+        
+        
+        do{
+            xPosition = rand.nextInt(rightWall - leftWall) + 1 + leftWall; // randomizes x position starting point 
+        }while (xPosition==0); 
+        do { 
+            yPosition = rand.nextInt(bottomWall - topWall) +1 + topWall; // randomizes y position starting point
+        } while(yPosition==0);    
+        
+        do{
+            diameter = rand.nextInt(25-10)+1+10; //EXTRA CREDIT randomize the diameter of the ball
+        }while (diameter ==0); 
+       
+        r = rand.nextInt(250); // random int, which will be passed as the red value in rgb
+        g = rand.nextInt(250); // random int, which will be passed as the green value in rgb
+        b = rand.nextInt(250); // random int, which will be passed as the blue value in rgb
+        
+        //add new balls to the ArrayList with the random generated speed, position, and color
+        balls.add(new BoxBall(xPosition, yPosition, diameter, new Color(r, g, b),
+        leftWall, rightWall, topWall, bottomWall, canvas, xSpeed, ySpeed));
+       
+        
+        //while loop keeps the balls moving. The balls will never stop bouncing. 
+        while(true){
+            for (BoxBall b : balls){
+                b.move(); 
+                
+        //redraws canvas if chipped
+        Shape rectangle = (new Rectangle2D.Double(leftWall, topWall, rightWall, bottomWall));
+        canvas.draw(rectangle);
     }
+}
+}
+}
+
 
     /**
      * Draw this ball at its current position onto the canvas.
@@ -83,34 +155,38 @@ public class BoxBall
         erase();
             
         // compute new position
-        //ySpeed += GRAVITY;
+        
         yPosition += ySpeed;
         xPosition += xSpeed;
 
-        // check if it has hit the ground
-//         if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
-//             yPosition = (int)(groundPosition - diameter);
-//             ySpeed = -ySpeed + ballDegradation; 
-//         }
+         //check if it has hit the ground
+      if(yPosition >= (bottomWall - diameter) && ySpeed > 0) {
+           yPosition = (int)(bottomWall - diameter);
+           ySpeed = -ySpeed; 
+        }
 
         // WALL CHECKS
-        if (xPosition < leftWall ) {
-            xSpeed = -xSpeed;
+        else if (xPosition <= leftWall && xSpeed < 0) {
+            xSpeed = -xSpeed; // if the ball has hit the left wall reverse xSpeed
         }
         
-        if (xPosition > rightWall ) {
-            xSpeed = -xSpeed;
+        else if (xPosition > rightWall && xSpeed < 0) {
+            xSpeed = -xSpeed; // if the ball has hit the right wall reverse xSpeed
         }
         
-        if (yPosition < topWall ) {
-            ySpeed = -ySpeed;
+        else if (yPosition < topWall && ySpeed < 0) {
+            ySpeed = -ySpeed; // if the ball has hit the top wall reverse ySpeed
         }
         
-        if (yPosition > bottomWall ) {
-            ySpeed = -ySpeed;
+        else if (yPosition <= bottomWall && ySpeed < 0) {
+            ySpeed = -ySpeed; // if the ball has hit the bottome wall reverse ySpeed
         }
-        
-
+        else { // else if none of the things happen, keep speed and positions the same
+            ySpeed = ySpeed;
+            xSpeed = xSpeed;
+            yPosition = yPosition;
+            xPosition = xPosition;    
+        }
         // draw again at new position
         draw();
     }    
