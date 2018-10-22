@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=BoxBall
 comment0.text=\n\ Class\ BoxBall\ -\ a\ graphical\ ball\ that\ moves\ at\ a\ constant\ rate\ in\n\ the\ x\ and\ y\ axes\ and\ bounces\ off\ of\ 'walls'\ as\ defined\ by\ values\ passed\ in\n\ to\ the\ BoxBall\ Constructor\n\ \n\ This\ class\ \ is\ a\ precursor\ to\ implementing\ Pong\n\n\ This\ movement\ can\ be\ initiated\ by\ repeated\ calls\ to\ the\ "move"\ method.\n\ \n\ EXTRA\ CREDTIT\:\ diameter\ of\ ball\ is\ randomized.\ \n\ \n\ @author\ Daisry\ Joy\ Ladignon\n\ \n\ @version\ 2018.10.15\n
-comment1.params=
-comment1.target=BoxBall()
+comment1.params=xPos\ yPos\ diameter\ ballColor\ drawingCanvas
+comment1.target=BoxBall(int,\ int,\ int,\ java.awt.Color,\ Canvas)
 comment1.text=\n\ Constructor\ for\ objects\ of\ class\ BoxBall\n\n\ @param\ xPos\ \ the\ horizontal\ coordinate\ of\ the\ ball\n\ @param\ yPos\ \ the\ vertical\ coordinate\ of\ the\ ball\n\ @param\ ballDiameter\ \ the\ diameter\ (in\ pixels)\ of\ the\ ball\n\ @param\ ballColor\ \ the\ color\ of\ the\ ball\n\ \n
 comment2.params=
 comment2.target=void\ draw()

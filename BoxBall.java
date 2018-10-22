@@ -40,6 +40,7 @@ public class BoxBall
     private int xSpeed; 
     private int ySpeed;
     
+    
  
 
     /**
@@ -51,36 +52,16 @@ public class BoxBall
      * @param ballColor  the color of the ball
      * 
      */
-    public BoxBall()                   
+    public BoxBall(int xPos, int yPos, int diameter, Color ballColor, Canvas drawingCanvas)                   
     {
-        Random rand = new Random();
-        do{
-            xSpeed = rand.nextInt(); // randomizes the x position speed for each ball
-        } while (xSpeed == 0); 
-        do{ ySpeed = rand.nextInt(); // randomizes y position speed for each ball
-        }while (ySpeed == 0);
         
+        xPosition = xPos; 
+        yPosition = yPos;
+        color = ballColor;
+        diameter = diameter;
+        myCanvas = drawingCanvas;
+    }
         
-        do{
-            xPosition = rand.nextInt(375 - 10) + 1 + 10; // randomizes x position starting point 
-        }while (xPosition==0); 
-        do { 
-            yPosition = rand.nextInt(375 - 10) +1 + 10; // randomizes y position starting point
-        } while(yPosition==0);    
-        
-        do{
-            diameter = rand.nextInt(25-10)+1+10; //EXTRA CREDIT randomize the diameter of the ball
-        }while (diameter ==0); 
-       
-        r = rand.nextInt(250); // random int, which will be passed as the red value in rgb
-        g = rand.nextInt(250); // random int, which will be passed as the green value in rgb
-        b = rand.nextInt(250); // random int, which will be passed as the blue value in rgb
-        color = new Color(r, g, b);                
-       
-}
-
-    
-   
 
     /**
      * Draw this ball at its current position onto the canvas.
