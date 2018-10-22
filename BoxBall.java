@@ -1,8 +1,10 @@
 import java.awt.*;
+import java.awt.Color;
 import java.awt.geom.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.geom.Rectangle2D;
+
 
 /**
  * Class BoxBall - a graphical ball that moves at a constant rate in
@@ -22,9 +24,6 @@ import java.awt.geom.Rectangle2D;
 
 public class BoxBall
 {
-    private static final int GRAVITY = 3;  // effect of gravity
-
-    // private int ballDegradation = 2;
     private Ellipse2D.Double circle;
     private Color color;
     private int diameter;
@@ -34,14 +33,14 @@ public class BoxBall
     private int topWall;             // y position of top Wall
     private int leftWall;            // x position of left Wall
     private int rightWall;           // x position of right Wall
-    private Canvas canvas;
+    private Canvas myCanvas;
     private int r; 
     private int g; 
     private int b;
     private int xSpeed; 
     private int ySpeed;
-    private Random rand = new Random();
-    private ArrayList<BoxBall> balls; 
+    
+ 
 
     /**
      * Constructor for objects of class BoxBall
@@ -50,45 +49,12 @@ public class BoxBall
      * @param yPos  the vertical coordinate of the ball
      * @param ballDiameter  the diameter (in pixels) of the ball
      * @param ballColor  the color of the ball
-     * @param drawingCanvas  the canvas to draw this ball on
+     * 
      */
-    public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor, int bottomWall,
-                   int topWall, int rightWall, int leftWall, Canvas drawingCanvas,
-                   int ySpeed, int xSpeed)                   
+    public BoxBall()                   
     {
-        xPosition = xPos;
-        yPosition = yPos;
-        color = ballColor;
-        diameter = ballDiameter;
-        canvas = drawingCanvas;
-        this.topWall = topWall; 
-        this.bottomWall = bottomWall; 
-        this.rightWall = rightWall; 
-        this.leftWall = leftWall; 
-        this.ySpeed = ySpeed; 
-        this.xSpeed = xSpeed; 
-       
-    }
-
-    
-    /**
-     * This method draws the canvas and the balls that move inisde.
-     */
-    public void boxBounce(){
-        canvas = new Canvas("Box", 700, 700);
-        balls = new ArrayList<BoxBall>(); 
-        rand = new Random(); 
-        
-        //drawing the box
-        leftWall = 0;
-        rightWall = 600;
-        topWall = 0;
-        bottomWall = 600;
-        
-        canvas.setVisible(true); // makes the canvas visible
-        
-        for(int i = 0; i <=  30 && i >= 5;  i++) // randomizes the number of balls 
-        { do{
+        Random rand = new Random();
+        do{
             xSpeed = rand.nextInt(); // randomizes the x position speed for each ball
         } while (xSpeed == 0); 
         do{ ySpeed = rand.nextInt(); // randomizes y position speed for each ball
@@ -96,10 +62,10 @@ public class BoxBall
         
         
         do{
-            xPosition = rand.nextInt(rightWall - leftWall) + 1 + leftWall; // randomizes x position starting point 
+            xPosition = rand.nextInt(375 - 10) + 1 + 10; // randomizes x position starting point 
         }while (xPosition==0); 
         do { 
-            yPosition = rand.nextInt(bottomWall - topWall) +1 + topWall; // randomizes y position starting point
+            yPosition = rand.nextInt(375 - 10) +1 + 10; // randomizes y position starting point
         } while(yPosition==0);    
         
         do{
@@ -109,33 +75,20 @@ public class BoxBall
         r = rand.nextInt(250); // random int, which will be passed as the red value in rgb
         g = rand.nextInt(250); // random int, which will be passed as the green value in rgb
         b = rand.nextInt(250); // random int, which will be passed as the blue value in rgb
-        
-        //add new balls to the ArrayList with the random generated speed, position, and color
-        balls.add(new BoxBall(xPosition, yPosition, diameter, new Color(r, g, b),
-        leftWall, rightWall, topWall, bottomWall, canvas, xSpeed, ySpeed));
+        color = new Color(r, g, b);                
        
-        
-        //while loop keeps the balls moving. The balls will never stop bouncing. 
-        while(true){
-            for (BoxBall b : balls){
-                b.move(); 
-                
-        //redraws canvas if chipped
-        Shape rectangle = (new Rectangle2D.Double(leftWall, topWall, rightWall, bottomWall));
-        canvas.draw(rectangle);
-    }
-}
-}
 }
 
+    
+   
 
     /**
      * Draw this ball at its current position onto the canvas.
      **/
     public void draw()
     {
-        canvas.setForegroundColor(color);
-        canvas.fillCircle(xPosition, yPosition, diameter);
+        myCanvas.setForegroundColor(color);
+        myCanvas.fillCircle(xPosition, yPosition, diameter);
     }
 
     /**
@@ -143,7 +96,7 @@ public class BoxBall
      **/
     public void erase()
     {
-        canvas.eraseCircle(xPosition, yPosition, diameter);
+        myCanvas.eraseCircle(xPosition, yPosition, diameter);
     }    
 
     /**
@@ -191,6 +144,19 @@ public class BoxBall
         draw();
     }    
 
+    
+    public void bounce ()
+    {
+        int ground = 400;
+         myCanvas.setVisible(true);
+
+        // draw the ground
+        myCanvas.drawLine(50, ground, 550, ground);
+        myCanvas.drawLine(50, 50, 50, ground);
+        myCanvas.drawLine(50, 50, 550, 50); 
+        myCanvas.drawLine(550, 50, 550, ground); 
+    }
+    
     /**
      * return the horizontal position of this ball
      */

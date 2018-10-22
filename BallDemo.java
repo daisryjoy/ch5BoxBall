@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class BallDemo - a short demonstration showing animation with the 
@@ -19,7 +21,7 @@ public class BallDemo
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
     }
-
+/*
     public void boxBounce(){
      //   BoxBall ball = new BoxBall(50, 50, 16, Color.BLUE, myCanvas );
        // ball.draw();
@@ -29,6 +31,7 @@ public class BallDemo
          //   ball.move();
         }
     }
+    */
     
     /**
      * Simulate two bouncing balls
@@ -60,4 +63,53 @@ public class BallDemo
             }
         }
     }
+        
+        /**
+         * This method draws a rectangle (the box) on screen and
+         * between five and thirty balls that move inside the box.
+         */
+        public void boxBounce(){
+            
+        Random rand = new Random();
+        myCanvas = new Canvas("Box", 700, 700);
+        //create BoxBall objects array
+        int numberOfBalls = rand.nextInt(30-5+1)+5; 
+        BoxBall[] balls = new BoxBall[numberOfBalls];
+        
+        
+        myCanvas.drawLine(50,50,50, 400);
+        myCanvas.drawLine(50, 50, 550, 50); 
+        myCanvas.drawLine(50, 400, 550, 400);
+        myCanvas.drawLine(550, 400, 550, 50); 
+        myCanvas.setVisible(true); // makes the canvas visible
+        
+        for(int i = 0; i < balls.length; i++) // randomizes the number of balls 
+        {
+        //add new balls to the ArrayList with the random generated speed, position, and color
+        balls[i] = new BoxBall();
+    }
+        
+           
+         //while loop keeps the balls moving. The balls will never stop bouncing. 
+        for(int i = 0; i<balls.length; i++){
+            balls[i].move(); 
+        }
+                
+        //redraws canvas if chipped
+        myCanvas.drawLine(50,50,50, 400);
+        myCanvas.drawLine(50, 50, 550, 50); 
+        myCanvas.drawLine(50, 400, 550, 400);
+        myCanvas.drawLine(550, 400, 550, 50); 
+       
+       
+        
+    }
 }
+        
+        
+    
+        
+    
+        
+    
+
