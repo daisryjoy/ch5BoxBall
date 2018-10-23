@@ -29,19 +29,17 @@ public class BoxBall
     private int diameter;
     private int xPosition;
     private int yPosition;
-    private int bottomWall;          // y position of bottom Wall
-    private int topWall;             // y position of top Wall
-    private int leftWall;            // x position of left Wall
-    private int rightWall;           // x position of right Wall
     private Canvas myCanvas;
     private int r; 
     private int g; 
     private int b;
     private int xSpeed; 
-    private int ySpeed;
-    
-    
- 
+    private int ySpeed;    
+    private final int groundPosition;  
+    private int bottomWall;
+    private int topWall;
+    private int leftWall;
+    private int rightWall;
 
     /**
      * Constructor for objects of class BoxBall
@@ -52,14 +50,21 @@ public class BoxBall
      * @param ballColor  the color of the ball
      * 
      */
-    public BoxBall(int xPos, int yPos, int diameter, Color ballColor, Canvas drawingCanvas)                   
+    public BoxBall(int xPos, int yPos, int diameter, Color ballColor, int groundPos, Canvas drawingCanvas, int xSpeed, int ySpeed,
+    int topWall, int bottomWall, int rightWall, int leftWall)                   
     {
-        
         xPosition = xPos; 
         yPosition = yPos;
         color = ballColor;
-        diameter = diameter;
+        this.diameter = diameter;
+        groundPosition = groundPos;
         myCanvas = drawingCanvas;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+        this.bottomWall = bottomWall; 
+        this.rightWall = rightWall;
+        this.leftWall = leftWall;
+        this.topWall = topWall; 
     }
         
 
@@ -94,33 +99,26 @@ public class BoxBall
         xPosition += xSpeed;
 
          //check if it has hit the ground
-      if(yPosition >= (bottomWall - diameter) && ySpeed > 0) {
-           yPosition = (int)(bottomWall - diameter);
+         if(yPosition < topWall) {
+           yPosition = topWall;
            ySpeed = -ySpeed; 
         }
-
         // WALL CHECKS
-        else if (xPosition <= leftWall && xSpeed < 0) {
+         if (xPosition < leftWall) {
+            xPosition = leftWall;
             xSpeed = -xSpeed; // if the ball has hit the left wall reverse xSpeed
         }
         
-        else if (xPosition > rightWall && xSpeed < 0) {
+         if (xPosition  >= (rightWall -diameter)){
+             xPosition = (int)(rightWall-diameter);
             xSpeed = -xSpeed; // if the ball has hit the right wall reverse xSpeed
         }
         
-        else if (yPosition < topWall && ySpeed < 0) {
+         if (yPosition >= bottomWall-diameter) {
+             yPosition = (int)(bottomWall - diameter);
             ySpeed = -ySpeed; // if the ball has hit the top wall reverse ySpeed
         }
-        
-        else if (yPosition <= bottomWall && ySpeed < 0) {
-            ySpeed = -ySpeed; // if the ball has hit the bottome wall reverse ySpeed
-        }
-        else { // else if none of the things happen, keep speed and positions the same
-            ySpeed = ySpeed;
-            xSpeed = xSpeed;
-            yPosition = yPosition;
-            xPosition = xPosition;    
-        }
+       
         // draw again at new position
         draw();
     }    

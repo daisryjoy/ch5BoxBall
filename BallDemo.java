@@ -64,68 +64,64 @@ public class BallDemo
         int ground = 400;
         myCanvas = new Canvas("Box", 700, 700);
         //create BoxBall objects array
-        int numberOfBalls = rand.nextInt(30-5+1)+5; 
+        int numberOfBalls = rand.nextInt(30-5)+1+5; 
         BoxBall[] balls = new BoxBall[numberOfBalls];
+        int counter = 0; 
+         
+        int leftWall = 30;
+        int topWall = 30; 
+        int rightWall = 550; 
+        int bottomWall = 550; 
         
-         int r; 
-         int g; 
-         int b;
-         int xSpeed; 
-         int ySpeed;
-         int xPosition;
-         int yPosition;
-         int diameter;
-         Color color;
-        myCanvas.drawLine(50,50,50, 400);
-        myCanvas.drawLine(50, 50, 550, 50); 
-        myCanvas.drawLine(50, 400, 550, 400);
-        myCanvas.drawLine(550, 400, 550, 50); 
+        myCanvas.drawLine(leftWall, bottomWall, rightWall, bottomWall); //left wall
+        myCanvas.drawLine(leftWall, topWall, rightWall, topWall); //top
+        myCanvas.drawLine(leftWall, topWall, leftWall, bottomWall); // bottom 
+        myCanvas.drawLine(rightWall, topWall, rightWall, bottomWall); //right wall
         myCanvas.setVisible(true); // makes the canvas visible
         
-        for(int i = 0; i < balls.length; i++) // randomizes the number of balls 
+        for(counter = 0; counter < balls.length; counter++) // randomizes the number of balls 
         {
         
+         int top  = ground - 400;
+         
+         int xSpeed = rand.nextInt(7-2)+1+2; // randomizes the x position speed for each ball
         
-            xSpeed = rand.nextInt(); // randomizes the x position speed for each ball
+         int ySpeed = rand.nextInt(7-2)+1+2; // randomizes y position speed for each ball
         
-         ySpeed = rand.nextInt(); // randomizes y position speed for each ball
+         int xPosition = (70 - 10) + 1 + 10; // randomizes x position starting point 
         
-        
-        
-        
-            xPosition = rand.nextInt(375 - 10) + 1 + 10; // randomizes x position starting point 
-        
-          yPosition = rand.nextInt(375 - 10) +1 + 10; // randomizes y position starting point
+         int yPosition = (70 - 10) +1 + 10; // randomizes y position starting point
            
-        
-        
-            diameter = rand.nextInt(25-10)+1+10; //EXTRA CREDIT randomize the diameter of the ball
+         int diameter = rand.nextInt(25-10)+1+10; //EXTRA CREDIT randomize the diameter of the ball
        
        
-        r = rand.nextInt(250); // random int, which will be passed as the red value in rgb
-        g = rand.nextInt(250); // random int, which will be passed as the green value in rgb
-        b = rand.nextInt(250); // random int, which will be passed as the blue value in rgb
-        color = new Color(r, g, b);  
+        int r = rand.nextInt(250); // random int, which will be passed as the red value in rgb
+        int g = rand.nextInt(250); // random int, which will be passed as the green value in rgb
+        int b = rand.nextInt(250); // random int, which will be passed as the blue value in rgb
+        Color color = new Color(r, g, b);  
         
-        BoxBall ball = new BoxBall(xPosition, yPosition, diameter, color, myCanvas);
-        balls[i] = ball;
-        balls[i].draw();
-           
-         //while loop keeps the balls moving. The balls will never stop bouncing. 
-        for(int x = 0; x<balls.length; x++){
-            balls[x].move(); 
+        BoxBall ball = new BoxBall(xPosition, yPosition, diameter, color, ground, myCanvas, xSpeed, ySpeed,
+        topWall, bottomWall, leftWall, rightWall);
+        balls[counter] = ball; 
+        balls[counter].draw(); 
+        
+        
+    }   
+        
+        boolean finished = false;
+        while(!finished){
+            for(int i = 0; i < balls.length; i++){
+                myCanvas.wait(2);
+                balls[i].move();
+            }
+            myCanvas.drawLine(leftWall, bottomWall, rightWall, bottomWall); //left wall
+            myCanvas.drawLine(leftWall, topWall, rightWall, topWall); //top
+            myCanvas.drawLine(leftWall, topWall, leftWall, topWall); // bottom 
+            myCanvas.drawLine(rightWall, topWall, rightWall, bottomWall);
         }
-                
-        //redraws canvas if chipped
-        myCanvas.drawLine(50,50,50, 400);
-        myCanvas.drawLine(50, 50, 550, 50); 
-        myCanvas.drawLine(50, 400, 550, 400);
-        myCanvas.drawLine(550, 400, 550, 50); 
-       
-       
         
     }}
-}
+
 
         
         
