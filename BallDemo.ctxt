@@ -9,5 +9,5 @@ comment2.target=void\ bounce()
 comment2.text=\n\ Simulate\ two\ bouncing\ balls\n
 comment3.params=
 comment3.target=void\ boxBounce()
-comment3.text=\n\ This\ method\ draws\ a\ rectangle\ (the\ box)\ on\ screen\ and\n\ between\ five\ and\ thirty\ balls\ that\ move\ inside\ the\ box.\ It\ instantiates\ the\ BoxBall\ class.\n
+comment3.text=\n\ This\ method\ draws\ a\ rectangle\ (the\ box)\ on\ screen\ and\n\ between\ five\ and\ thirty\ balls\ that\ move\ inside\ the\ box.\ It\ instantiates\ the\ BoxBall\ class.\n\ \n\ There\ is\ an\ extra\ credit\ attempt\ to\ make\ the\ diameter\ of\ the\ balls\ from\ 10-25\ pixels\n
 numComments=4

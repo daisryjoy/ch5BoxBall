@@ -57,6 +57,8 @@ public class BallDemo
         /**
          * This method draws a rectangle (the box) on screen and
          * between five and thirty balls that move inside the box. It instantiates the BoxBall class.
+         * 
+         * There is an extra credit attempt to make the diameter of the balls from 10-25 pixels
          */
         public void boxBounce(){
             
