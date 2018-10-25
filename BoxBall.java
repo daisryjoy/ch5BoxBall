@@ -109,7 +109,7 @@ public class BoxBall
             xSpeed = -xSpeed; // if the ball has hit the left wall reverse xSpeed
         }
         
-         if (xPosition  >= (rightWall -diameter)){
+         if (xPosition  >= (rightWall - diameter)){
              xPosition = (int)(rightWall-diameter);
             xSpeed = -xSpeed; // if the ball has hit the right wall reverse xSpeed
         }

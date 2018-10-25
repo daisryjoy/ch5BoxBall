@@ -61,7 +61,7 @@ public class BallDemo
         public void boxBounce(){
             
         Random rand = new Random();
-        int ground = 400;
+        //int ground = 400;
         myCanvas = new Canvas("Box", 700, 700);
         //create BoxBall objects array
         int numberOfBalls = rand.nextInt(30-5)+1+5; 
@@ -82,26 +82,27 @@ public class BallDemo
         for(counter = 0; counter < balls.length; counter++) // randomizes the number of balls 
         {
         
-         int top  = ground - 400;
          
-         int xSpeed = rand.nextInt(7-2)+1+2; // randomizes the x position speed for each ball
+         
+         int xSpeed = rand.nextInt((7-2)+1)+2; // randomizes the x position speed for each ball
         
-         int ySpeed = rand.nextInt(7-2)+1+2; // randomizes y position speed for each ball
+         int ySpeed = rand.nextInt((7-2)+1)+2; // randomizes y position speed for each ball
         
-         int xPosition = (70 - 10) + 1 + 10; // randomizes x position starting point 
+         int xPosition = ((80 - 10) + 1) + 10; // randomizes x position starting point 
         
-         int yPosition = (70 - 10) +1 + 10; // randomizes y position starting point
+         int yPosition = ((60 - 10) +1) + 10; // randomizes y position starting point
            
          int diameter = rand.nextInt(25-10)+1+10; //EXTRA CREDIT randomize the diameter of the ball
+         
+         int ground = rand.nextInt(25-10)+1+10;
        
-       
-        int r = rand.nextInt(250); // random int, which will be passed as the red value in rgb
-        int g = rand.nextInt(250); // random int, which will be passed as the green value in rgb
-        int b = rand.nextInt(250); // random int, which will be passed as the blue value in rgb
+        int r = rand.nextInt((250-10)+1) + 10; // random int, which will be passed as the red value in rgb
+        int g = rand.nextInt((250-10) +1) + 10; // random int, which will be passed as the green value in rgb
+        int b = rand.nextInt((250-10) +1) + 10; // random int, which will be passed as the blue value in rgb
         Color color = new Color(r, g, b);  
         
         BoxBall ball = new BoxBall(xPosition, yPosition, diameter, color, ground, myCanvas, xSpeed, ySpeed,
-        topWall, bottomWall, leftWall, rightWall);
+        topWall, bottomWall, rightWall, leftWall);
         balls[counter] = ball; 
         balls[counter].draw(); 
         
