@@ -56,7 +56,7 @@ public class BallDemo
         
         /**
          * This method draws a rectangle (the box) on screen and
-         * between five and thirty balls that move inside the box.
+         * between five and thirty balls that move inside the box. It instantiates the BoxBall class.
          */
         public void boxBounce(){
             
@@ -92,13 +92,13 @@ public class BallDemo
         
          int yPosition = ((60 - 10) +1) + 10; // randomizes y position starting point
            
-         int diameter = rand.nextInt(25-10)+1+10; //EXTRA CREDIT randomize the diameter of the ball
+         int diameter = rand.nextInt(25-10)+1+10; //EXTRA CREDIT randomize the diameter of the ball from 10-25 pixels
          
          int ground = rand.nextInt(25-10)+1+10;
        
-        int r = rand.nextInt((250-10)+1) + 10; // random int, which will be passed as the red value in rgb
-        int g = rand.nextInt((250-10) +1) + 10; // random int, which will be passed as the green value in rgb
-        int b = rand.nextInt((250-10) +1) + 10; // random int, which will be passed as the blue value in rgb
+        int r = rand.nextInt((240-20)+1) + 20; // random int, which will be passed as the red value in rgb
+        int g = rand.nextInt((240-20) +1) + 20; // random int, which will be passed as the green value in rgb
+        int b = rand.nextInt((240-20) +1) + 20; // random int, which will be passed as the blue value in rgb
         Color color = new Color(r, g, b);  
         
         BoxBall ball = new BoxBall(xPosition, yPosition, diameter, color, ground, myCanvas, xSpeed, ySpeed,
@@ -106,7 +106,11 @@ public class BallDemo
         balls[counter] = ball; 
         balls[counter].draw(); 
         
-        
+    
+        myCanvas.drawLine(leftWall, bottomWall, rightWall, bottomWall); //left wall
+        myCanvas.drawLine(leftWall, topWall, rightWall, topWall); //top
+        myCanvas.drawLine(leftWall, topWall, leftWall, bottomWall); // bottom 
+        myCanvas.drawLine(rightWall, topWall, rightWall, bottomWall); //right wall
     }   
         
         boolean finished = false;

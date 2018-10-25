@@ -11,10 +11,6 @@ import java.awt.geom.Rectangle2D;
  * the x and y axes and bounces off of 'walls' as defined by values passed in
  * to the BoxBall Constructor
  * 
- * This class  is a precursor to implementing Pong
- *
- * This movement can be initiated by repeated calls to the "move" method.
- * 
  * EXTRA CREDTIT: diameter of ball is randomized. 
  * 
  * @author Daisry Joy Ladignon
@@ -48,6 +44,14 @@ public class BoxBall
      * @param yPos  the vertical coordinate of the ball
      * @param ballDiameter  the diameter (in pixels) of the ball
      * @param ballColor  the color of the ball
+     * @param groundPos  ground position of the ball 
+     * @param drawingCanvas  makes the canvas
+     * @param xSpeed  horizontal speed of the ball 
+     * @param ySpeed  vertical speed of the ball 
+     * @param topWall  makes the topWall
+     * @param bottomWall  makes the bottomWall
+     * @param rightWall  makes the rightWall 
+     * @param leftWall  makes the leftWall
      * 
      */
     public BoxBall(int xPos, int yPos, int diameter, Color ballColor, int groundPos, Canvas drawingCanvas, int xSpeed, int ySpeed,
@@ -86,7 +90,7 @@ public class BoxBall
     }    
 
     /**
-     * Move this ball according to its position and speed and redraw.
+     * Move this ball according to its position and speed and redraws it.
      **/
     public void move()
     {

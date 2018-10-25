@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=BoxBall
-comment0.text=\n\ Class\ BoxBall\ -\ a\ graphical\ ball\ that\ moves\ at\ a\ constant\ rate\ in\n\ the\ x\ and\ y\ axes\ and\ bounces\ off\ of\ 'walls'\ as\ defined\ by\ values\ passed\ in\n\ to\ the\ BoxBall\ Constructor\n\ \n\ This\ class\ \ is\ a\ precursor\ to\ implementing\ Pong\n\n\ This\ movement\ can\ be\ initiated\ by\ repeated\ calls\ to\ the\ "move"\ method.\n\ \n\ EXTRA\ CREDTIT\:\ diameter\ of\ ball\ is\ randomized.\ \n\ \n\ @author\ Daisry\ Joy\ Ladignon\n\ \n\ @version\ 2018.10.15\n
+comment0.text=\n\ Class\ BoxBall\ -\ a\ graphical\ ball\ that\ moves\ at\ a\ constant\ rate\ in\n\ the\ x\ and\ y\ axes\ and\ bounces\ off\ of\ 'walls'\ as\ defined\ by\ values\ passed\ in\n\ to\ the\ BoxBall\ Constructor\n\ \n\ EXTRA\ CREDTIT\:\ diameter\ of\ ball\ is\ randomized.\ \n\ \n\ @author\ Daisry\ Joy\ Ladignon\n\ \n\ @version\ 2018.10.15\n
 comment1.params=xPos\ yPos\ diameter\ ballColor\ groundPos\ drawingCanvas\ xSpeed\ ySpeed\ topWall\ bottomWall\ rightWall\ leftWall
 comment1.target=BoxBall(int,\ int,\ int,\ java.awt.Color,\ int,\ Canvas,\ int,\ int,\ int,\ int,\ int,\ int)
-comment1.text=\n\ Constructor\ for\ objects\ of\ class\ BoxBall\n\n\ @param\ xPos\ \ the\ horizontal\ coordinate\ of\ the\ ball\n\ @param\ yPos\ \ the\ vertical\ coordinate\ of\ the\ ball\n\ @param\ ballDiameter\ \ the\ diameter\ (in\ pixels)\ of\ the\ ball\n\ @param\ ballColor\ \ the\ color\ of\ the\ ball\n\ \n
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ BoxBall\n\n\ @param\ xPos\ \ the\ horizontal\ coordinate\ of\ the\ ball\n\ @param\ yPos\ \ the\ vertical\ coordinate\ of\ the\ ball\n\ @param\ ballDiameter\ \ the\ diameter\ (in\ pixels)\ of\ the\ ball\n\ @param\ ballColor\ \ the\ color\ of\ the\ ball\n\ @param\ groundPos\ \ ground\ position\ of\ the\ ball\ \n\ @param\ drawingCanvas\ \ makes\ the\ canvas\n\ @param\ xSpeed\ \ horizontal\ speed\ of\ the\ ball\ \n\ @param\ ySpeed\ \ vertical\ speed\ of\ the\ ball\ \n\ @param\ topWall\ \ makes\ the\ topWall\n\ @param\ bottomWall\ \ makes\ the\ bottomWall\n\ @param\ rightWall\ \ makes\ the\ rightWall\ \n\ @param\ leftWall\ \ makes\ the\ leftWall\n\ \n
 comment2.params=
 comment2.target=void\ draw()
 comment2.text=\n\ Draw\ this\ ball\ at\ its\ current\ position\ onto\ the\ canvas.\n
@@ -12,7 +12,7 @@ comment3.target=void\ erase()
 comment3.text=\n\ Erase\ this\ ball\ at\ its\ current\ position.\n
 comment4.params=
 comment4.target=void\ move()
-comment4.text=\n\ Move\ this\ ball\ according\ to\ its\ position\ and\ speed\ and\ redraw.\n
+comment4.text=\n\ Move\ this\ ball\ according\ to\ its\ position\ and\ speed\ and\ redraws\ it.\n
 comment5.params=
 comment5.target=void\ bounce()
 comment6.params=
